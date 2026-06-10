@@ -1,0 +1,5 @@
+semantic-kernel
+openai
+httpx
+python-dotenv
+truststore
