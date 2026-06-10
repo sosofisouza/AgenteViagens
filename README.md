@@ -1,4 +1,4 @@
-# Agente de Viagens com Semantic Kernel e GitHub Models
+# Agente de Viagens com Semantic Kernel e GitHub Models✈️💙
 
 Este projeto é um agente simples de viagens criado em Python. Ele usa o **Semantic Kernel** para organizar a lógica do agente e o **GitHub Models** como serviço de IA para gerar roteiros de viagem em português.
 
@@ -6,7 +6,7 @@ O agente sugere destinos aleatórios e, quando a IA está disponível, monta um 
 
 ---
 
-## Funcionalidades
+## ✨ Funcionalidades
 
 - Sugere destinos aleatórios para viagem.
 - Evita repetir o último destino sugerido.
@@ -19,7 +19,7 @@ O agente sugere destinos aleatórios e, quando a IA está disponível, monta um 
 
 ---
 
-## Como o agente funciona
+## 🧠 Como o agente funciona
 
 Fluxo simplificado:
 
@@ -43,7 +43,7 @@ O projeto possui um plugin local chamado `DestinationPlugin`, responsável por e
 
 ---
 
-## Tecnologias utilizadas
+## 🛠️ Tecnologias utilizadas
 
 - Python
 - Semantic Kernel
@@ -55,7 +55,7 @@ O projeto possui um plugin local chamado `DestinationPlugin`, responsável por e
 
 ---
 
-## Pré-requisitos
+## 📋 Pré-requisitos
 
 Antes de executar o projeto, você precisa ter:
 
@@ -66,7 +66,7 @@ Antes de executar o projeto, você precisa ter:
 
 ---
 
-## Configuração do ambiente
+## ⚙️ Configuração do ambiente
 
 ### 1. Clone o repositório
 
@@ -105,7 +105,7 @@ pip install -r requirements.txt
 
 ---
 
-## Configuração do `.env`
+## 🔑 Configuração do `.env`
 
 Crie um arquivo chamado `.env` na raiz do projeto.
 
@@ -122,7 +122,7 @@ MODEL_ID=openai/gpt-4o-mini
 
 ---
 
-## Segurança
+## 🔐 Segurança
 
 Adicione um arquivo `.gitignore` ao projeto para evitar subir arquivos sensíveis ou desnecessários.
 
@@ -139,7 +139,7 @@ __pycache__/
 
 ---
 
-## Como executar
+## 🚀 Como executar
 
 Com o ambiente virtual ativado, execute:
 
@@ -164,7 +164,7 @@ Digite "sair" para encerrar.
 
 ---
 
-## Exemplos de uso
+## 💬 Exemplos de uso
 
 ### Planejar uma viagem
 
@@ -212,7 +212,7 @@ O agente responderá considerando o destino atual da conversa.
 ---
 
 
-## Estrutura do projeto
+## 📁 Estrutura do projeto
 
 ```text
 .
@@ -226,7 +226,7 @@ O agente responderá considerando o destino atual da conversa.
 
 ---
 
-## Tratamento de erros
+## 🚨 Tratamento de erros
 
 O projeto possui uma função para exibir erros de forma mais detalhada:
 
@@ -250,7 +250,7 @@ Essa função ajuda a descobrir se o problema está relacionado a:
 
 ---
 
-## Problemas comuns
+## 🧩 Problemas comuns
 
 ### `GITHUB_TOKEN não encontrado`
 
@@ -284,7 +284,7 @@ Confirme se o token do GitHub é válido e possui permissão para usar GitHub Mo
 
 ---
 
-## Melhorias futuras
+## 🔮 Melhorias futuras
 
 Algumas ideias para evoluir o projeto:
 
@@ -299,7 +299,7 @@ Algumas ideias para evoluir o projeto:
 
 ---
 
-## Observação importante
+## 📌 Observação importante
 
 Este projeto foi criado com foco em aprendizado. Ele demonstra como integrar:
 
