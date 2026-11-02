@@ -123,10 +123,4 @@ Você: qual comida típica eu deveria experimentar?
 
 <br>
 
-<div align="center">
-
-Feito por **Sofia Rodrigues** &nbsp;·&nbsp; [LinkedIn](https://www.linkedin.com/in/sosofisouza/)
-
-</div>
-
 <img src="https://capsule-render.vercel.app/api?type=rounded&color=0:fbcfe8,100:f9a8d4&height=60&section=footer" width="100%" />
