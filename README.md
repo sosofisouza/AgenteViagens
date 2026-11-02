@@ -1,313 +1,132 @@
-# Agente de Viagens com Semantic Kernel e GitHub Models✈️💙
+<div align="center">
 
-Este projeto é um agente simples de viagens criado em Python. Ele usa o **Semantic Kernel** para organizar a lógica do agente e o **GitHub Models** como serviço de IA para gerar roteiros de viagem em português.
+<img src="https://capsule-render.vercel.app/api?type=rounded&color=0:fbcfe8,100:f9a8d4&height=170&section=header&text=Agente%20de%20Viagens&fontSize=42&fontColor=831843&fontAlignY=42&desc=Semantic%20Kernel%20%C2%B7%20GitHub%20Models&descSize=16&descAlignY=68" width="100%" />
 
-O agente sugere destinos aleatórios e, quando a IA está disponível, monta um roteiro prático de 1 dia dividido em **manhã**, **tarde** e **noite**.
+<img src="https://readme-typing-svg.demolab.com?font=Quicksand&weight=600&size=19&pause=1400&color=DB2777&center=true&vCenter=true&width=620&lines=%22Planeje+um+dia+de+viagem%22;Manh%C3%A3%2C+tarde+e+noite+em+um+roteiro;%22Quero+outro+destino%22" />
 
----
+</div>
 
-## ✨ Funcionalidades
+<br>
 
-- Sugere destinos aleatórios para viagem.
-- Evita repetir o último destino sugerido.
-- Gera roteiros de 1 dia usando IA.
-- Mantém o contexto do destino atual durante a conversa.
-- Permite pedir outro destino caso o usuário não goste da sugestão.
-- Usa GitHub Models com cliente compatível com OpenAI.
-- Usa `truststore` para melhorar a compatibilidade SSL em Windows e redes corporativas.
-- Continua funcionando parcialmente mesmo se a IA não estiver disponível.
+### Sobre o projeto
 
----
+Agente de viagens em Python que sorteia um destino e pede para a IA montar um roteiro de 1 dia, dividido em **manhã**, **tarde** e **noite**. Usa o **Semantic Kernel** para organizar a lógica do agente e o **GitHub Models** como serviço de IA.
 
-## 🧠 Como o agente funciona
+<br>
 
-Fluxo simplificado:
+### Funcionalidades
 
-```text
-Usuário
-  ↓
-agentkernel.py
-  ↓
-Semantic Kernel
-  ↓
-Plugin local de destinos
-  ↓
-Cliente AsyncOpenAI
-  ↓
-GitHub Models API
-  ↓
-Resposta com roteiro de viagem
+- Sugere destinos aleatórios, sem repetir o último
+- Gera roteiros de 1 dia com IA
+- Mantém o destino atual como contexto da conversa
+- Troca o destino quando você não gosta da sugestão
+- Continua funcionando, só com os destinos, se a IA não estiver disponível
+
+<br>
+
+### Como funciona
+
+```
+Você  ──►  agentkernel.py  ──►  Semantic Kernel
+                                     │
+                     Plugin local de destinos (sorteio)
+                                     │
+                         GitHub Models  ──►  roteiro de viagem
 ```
 
-O projeto possui um plugin local chamado `DestinationPlugin`, responsável por escolher destinos aleatórios. Depois disso, o destino escolhido é enviado para o modelo de IA, que monta o roteiro.
+O plugin `DestinationPlugin` escolhe o destino. Em seguida, o destino é enviado ao modelo de IA, que monta o roteiro.
 
----
+<br>
 
-## 🛠️ Tecnologias utilizadas
+### Tecnologias
 
-- Python
-- Semantic Kernel
-- GitHub Models
-- OpenAI Python SDK
-- HTTPX
-- python-dotenv
-- truststore
+<div align="center">
+  <img src="https://skillicons.dev/icons?i=py,github&theme=light" />
+  <br>
+  <sub>Python · Semantic Kernel · GitHub Models · OpenAI SDK · HTTPX · truststore</sub>
+</div>
 
----
+<br>
 
-## 📋 Pré-requisitos
+### Como executar
 
-Antes de executar o projeto, você precisa ter:
-
-- Python 3.10 ou superior instalado.
-- Uma conta no GitHub.
-- Um token do GitHub com permissão para usar GitHub Models.
-- Um ambiente virtual Python configurado.
-
----
-
-## ⚙️ Configuração do ambiente
-
-### 1. Clone o repositório
+**1. Instalar**
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
-cd seu-repositorio
-```
-
-### 2. Crie e ative o ambiente virtual
-
-No Windows PowerShell:
-
-```powershell
+git clone https://github.com/sosofisouza/AgenteViagens.git
+cd AgenteViagens
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-```
-
-No macOS ou Linux:
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-```
-
-### 3. Instale as dependências
-
-```bash
-pip install semantic-kernel openai httpx python-dotenv truststore
-```
-
-Depois instale com:
-
-```bash
+.venv\Scripts\activate        # Windows
+source .venv/bin/activate     # Linux e macOS
 pip install -r requirements.txt
 ```
 
----
+**2. Configurar**
 
-## 🔑 Configuração do `.env`
-
-Crie um arquivo chamado `.env` na raiz do projeto.
-
-Exemplo:
+Crie um arquivo `.env` na raiz do projeto:
 
 ```env
-GITHUB_TOKEN=github_pat_seu_token_aqui
+GITHUB_TOKEN=seu_token_do_github
 GITHUB_MODELS_BASE_URL=https://models.github.ai/inference
 MODEL_ID=openai/gpt-4o-mini
 ```
 
-> Nunca suba o arquivo `.env` para o GitHub.
-> Ele contém informações sensíveis, como o token de acesso.
+O token precisa ter permissão para usar o GitHub Models. O `.env` está no `.gitignore` e nunca vai para o repositório.
 
----
-
-## 🔐 Segurança
-
-Adicione um arquivo `.gitignore` ao projeto para evitar subir arquivos sensíveis ou desnecessários.
-
-Exemplo de `.gitignore`:
-
-```gitignore
-.env
-.venv/
-__pycache__/
-*.pyc
-.vscode/
-.idea/
-```
-
----
-
-## 🚀 Como executar
-
-Com o ambiente virtual ativado, execute:
+**3. Executar**
 
 ```bash
 python agentkernel.py
 ```
 
-Você verá algo parecido com:
+<br>
 
-```text
-Token carregado? True
-Prefixo do token: github_pat_1
-Base URL: https://models.github.ai/inference
-Modelo: openai/gpt-4o-mini
-Teste Semantic Kernel: Semantic Kernel funcionando.
-
-✈️ Agente de viagens iniciado!
-Digite algo como:
-- "planeje um dia de viagem"
-Digite "sair" para encerrar.
-```
-
----
-
-## 💬 Exemplos de uso
-
-### Planejar uma viagem
+### Exemplo de conversa
 
 ```text
 Você: planeje um dia de viagem
-```
 
-O agente irá sortear um destino e pedir para a IA montar um roteiro.
-
-Exemplo de resposta:
-
-```text
 Agente:
 Que tal conhecer Paris, França?
 
-Manhã:
-- Visite a Torre Eiffel.
-- Caminhe pelo Champ de Mars.
+Manhã:  Torre Eiffel e Champ de Mars
+Tarde:  Museu do Louvre e um café local
+Noite:  passeio pelo Rio Sena e comida típica
 
-Tarde:
-- Conheça o Museu do Louvre.
-- Faça uma pausa em um café local.
-
-Noite:
-- Passeie pelo Rio Sena.
-- Experimente uma comida típica francesa.
-```
-
-### Pedir outro destino
-
-```text
 Você: quero outro destino
-```
-
-O agente sorteará outro local e gerará um novo roteiro.
-
-### Continuar a conversa
-
-```text
 Você: qual comida típica eu deveria experimentar?
 ```
 
-O agente responderá considerando o destino atual da conversa.
+<br>
 
----
+<details>
+<summary><b>Problemas comuns</b></summary>
+<br>
 
+| Mensagem | O que fazer |
+|:---|:---|
+| `GITHUB_TOKEN não encontrado` | Confira se o `.env` existe e se o nome da variável está correto |
+| `APIConnectionError` | Problema de conexão ou certificado SSL. O projeto usa `truststore` para usar os certificados do sistema |
+| Modelo não encontrado | Confira o `MODEL_ID` |
+| Erro de autenticação | Confira se o token é válido e tem permissão para o GitHub Models |
 
-## 📁 Estrutura do projeto
+</details>
 
-```text
-.
-├── agentkernel.py
-├── README.md
-├── requirements.txt
-├── .env
-└── .gitignore
-```
+<br>
 
+### Próximos passos
 
----
+- Escolher o tipo de viagem, o orçamento e a duração
+- Integrar a previsão do tempo
+- Criar uma interface web
+- Separar o código em módulos e adicionar testes
 
-## 🚨 Tratamento de erros
+<br>
 
-O projeto possui uma função para exibir erros de forma mais detalhada:
+<div align="center">
 
-```python
-def imprimir_erro_detalhado(e: Exception):
-    print("\n⚠️ Não consegui chamar o modelo de IA.")
-    print(f"Tipo do erro: {type(e)}")
-    print(f"Detalhe técnico: {repr(e)}")
-    print(f"Causa: {repr(getattr(e, '__cause__', None))}")
-    print(f"Contexto: {repr(getattr(e, '__context__', None))}")
-```
+Feito por **Sofia Rodrigues** &nbsp;·&nbsp; [LinkedIn](https://www.linkedin.com/in/sosofisouza/)
 
-Essa função ajuda a descobrir se o problema está relacionado a:
+</div>
 
-- autenticação;
-- conexão;
-- certificado SSL;
-- modelo inválido;
-- indisponibilidade do serviço;
-- erro de configuração.
-
----
-
-## 🧩 Problemas comuns
-
-### `GITHUB_TOKEN não encontrado`
-
-Verifique se o arquivo `.env` existe e se a variável está escrita corretamente:
-
-```env
-GITHUB_TOKEN=github_pat_seu_token_aqui
-```
-
-### `APIConnectionError('Connection error.')`
-
-Possível problema de conexão HTTPS ou certificado SSL.
-
-Verifique se o código está usando `truststore`:
-
-```python
-ssl_context = truststore.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
-```
-
-### Erro de modelo não encontrado
-
-Confirme se o `MODEL_ID` está correto:
-
-```env
-MODEL_ID=openai/gpt-4o-mini
-```
-
-### Erro de autenticação
-
-Confirme se o token do GitHub é válido e possui permissão para usar GitHub Models.
-
----
-
-## 🔮 Melhorias futuras
-
-Algumas ideias para evoluir o projeto:
-
-- Salvar histórico da conversa em arquivo.
-- Permitir que o usuário escolha o tipo de viagem.
-- Adicionar orçamento estimado.
-- Adicionar duração personalizada da viagem.
-- Integrar busca de clima.
-- Criar interface web.
-- Adicionar testes automatizados.
-- Separar o código em módulos.
-
----
-
-## 📌 Observação importante
-
-Este projeto foi criado com foco em aprendizado. Ele demonstra como integrar:
-
-- um plugin local com Semantic Kernel;
-- um modelo de IA hospedado no GitHub Models;
-- configuração segura via `.env`;
-- tratamento de erros de conexão;
-- uso de certificados confiáveis do sistema operacional com `truststore`.
-
----
-
+<img src="https://capsule-render.vercel.app/api?type=rounded&color=0:fbcfe8,100:f9a8d4&height=60&section=footer" width="100%" />

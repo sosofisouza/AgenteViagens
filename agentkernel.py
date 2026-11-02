@@ -94,7 +94,7 @@ async def gerar_resposta_ia(chat_service, history, prompt_usuario):
 
 
 def imprimir_erro_detalhado(e: Exception):
-    print("\n⚠️ Não consegui chamar o modelo de IA.")
+    print("\nNão consegui chamar o modelo de IA.")
     print(f"Tipo do erro: {type(e)}")
     print(f"Detalhe técnico: {repr(e)}")
     print(f"Causa: {repr(getattr(e, '__cause__', None))}")
@@ -112,7 +112,6 @@ async def main():
     model_id = os.getenv("MODEL_ID", "openai/gpt-4o-mini")
 
     print("Token carregado?", bool(token))
-    print("Prefixo do token:", token[:12] if token else "nenhum")
     print("Base URL:", base_url)
     print("Modelo:", model_id)
 
@@ -180,7 +179,7 @@ async def main():
             )
 
         except Exception as e:
-            print("⚠️ Não foi possível inicializar o serviço de IA.")
+            print("Não foi possível inicializar o serviço de IA.")
             imprimir_erro_detalhado(e)
 
             chat_service = None
@@ -191,9 +190,9 @@ async def main():
                 http_client = None
 
     else:
-        print("⚠️ GITHUB_TOKEN não encontrado. O modo com IA não estará disponível.")
+        print("GITHUB_TOKEN não encontrado. O modo com IA não estará disponível.")
 
-    print("\n✈️ Agente de viagens iniciado!")
+    print("\nAgente de viagens iniciado!")
     print("Digite algo como:")
     print('- "planeje um dia de viagem"')
     print('Digite "sair" para encerrar.')
@@ -249,19 +248,19 @@ async def main():
 
                         if isinstance(e, (APIConnectionError, httpx.HTTPError, OSError)):
                             print(
-                                "⚠️ Falha de conexão detectada. "
+                                "Falha de conexão detectada. "
                                 "Desabilitando o modo IA e continuando apenas com o destino local."
                             )
                             chat_service = None
                             history = None
 
-                        print("\n✈️ Destino sugerido:")
+                        print("\nDestino sugerido:")
                         print(destino_atual)
-                        print("💡 A IA deveria montar o roteiro, mas a conexão falhou.")
+                        print("A IA deveria montar o roteiro, mas a conexão falhou.")
                 else:
-                    print("\n✈️ Destino sugerido:")
+                    print("\nDestino sugerido:")
                     print(destino_atual)
-                    print("💡 O roteiro com IA não está disponível no momento.")
+                    print("O roteiro com IA não está disponível no momento.")
 
                 continue
 
@@ -295,18 +294,18 @@ async def main():
 
                         if isinstance(e, (APIConnectionError, httpx.HTTPError, OSError)):
                             print(
-                                "⚠️ Falha de conexão detectada. "
+                                "Falha de conexão detectada. "
                                 "Desabilitando o modo IA e continuando apenas com o destino local."
                             )
                             chat_service = None
                             history = None
 
-                        print("\n✈️ Novo destino sugerido:")
+                        print("\nNovo destino sugerido:")
                         print(destino_atual)
                 else:
-                    print("\n✈️ Novo destino sugerido:")
+                    print("\nNovo destino sugerido:")
                     print(destino_atual)
-                    print("💡 O roteiro com IA não está disponível no momento.")
+                    print("O roteiro com IA não está disponível no momento.")
 
                 continue
 
@@ -342,13 +341,13 @@ async def main():
 
                     if isinstance(e, (APIConnectionError, httpx.HTTPError, OSError)):
                         print(
-                            "⚠️ Falha de conexão detectada. "
+                            "Falha de conexão detectada. "
                             "Desabilitando o modo IA e continuando apenas com o destino local."
                         )
                         chat_service = None
                         history = None
 
-                    print(f"💡 O destino atual é: {destino_atual}")
+                    print(f"O destino atual é: {destino_atual}")
             else:
                 print("\nAgente:")
                 print(
